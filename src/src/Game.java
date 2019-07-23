@@ -21,17 +21,13 @@ public class Game {
 			int direction;
 			while(currentFace.getValue() != 1)
 			{
-				direction = promptUser();
+				direction = promptUser(true);
 				currentFace = rotateDie(direction, currentFace);
 				System.out.println(currentFace.getValue());
-				if(currentFace.getValue() == 6)
-				{
-					//find the bug
-				}
 			}
 			
-			System.out.println("game over, input N to play again");
-			if(promptUser() != 0)
+			System.out.println("game over, input N to play again, input S, E, or W to quit");
+			if(promptUser(false) != 0)
 			{
 				play = false;
 			}
@@ -80,14 +76,17 @@ public class Game {
 		d.setNeighbors(temp);
 	}
 	
-	private int promptUser()
+	private int promptUser(boolean print)
 	{
 		boolean valid = false;
 		
 		int val = -3;
 		while(!valid)
 		{	
-			System.out.println("Enter a direction (N, E, S, W) ");
+			if (print)
+			{
+				System.out.println("Enter a direction (N, E, S, W) ");
+			}
 			String n = reader.next();
 			if(n.length() == 1)
 			{
